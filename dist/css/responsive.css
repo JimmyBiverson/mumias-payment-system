@@ -1,0 +1,81 @@
+/* Responsive helper and subtle UI animations for OPH site */
+:root{
+  --primary: #0d6efd;
+  --accent: #6f42c1;
+  --muted: #6c757d;
+  --card-radius: 0.5rem;
+}
+
+
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration: 0s !important; transition-duration: 0s !important}
+}
+
+/* Simple appear animation */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.fade-in-up{animation:fadeInUp .45s ease both}
+
+/* Button micro-interaction */
+.btn-primary{transition:transform .12s ease, box-shadow .12s ease}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.08)}
+
+/* Card visuals */
+.card{border-radius:var(--card-radius);box-shadow:0 6px 22px rgba(16,24,40,.04)}
+.card .card-header{border-radius:calc(var(--card-radius) - 0.25rem)}
+
+/* Make images responsive */
+img{max-width:100%;height:auto;display:block}
+img.rounded-circle{border-radius:50%}
+
+/* Navbar adjustments for small screens */
+.navbar-brand img{height:30px;width:30px;object-fit:cover}
+
+/* Forms spacing */
+.form-control{transition:box-shadow .12s ease}
+.form-control:focus{box-shadow:0 6px 18px rgba(0,123,255,.08);border-color:var(--primary)}
+
+/* Utility tweaks for mobile */
+@media (max-width: 991.98px){
+  .login-box{width:95% !important;margin:0 auto}
+  .card.card-outline{padding:0.6rem}
+  .login-title{font-size:1.65rem}
+}
+
+@media (max-width: 767.98px){
+  .login-box{padding-top:2rem}
+  .login-title{font-size:1.4rem;padding:1rem 0}
+  .card .card-body{padding:1rem}
+  .btn-lg{padding:.6rem 1rem;font-size:1rem}
+  .nav-tabs .nav-link{font-size:.95rem;padding:.5rem .6rem}
+}
+
+@media (max-width: 575.98px){
+  body{font-size:.95rem}
+  .login-box{width:100%;margin:0;padding:0 0.6rem}
+  .card{border-radius:0.6rem}
+  .card .card-body{padding:.75rem}
+  .card .card-header .nav{flex-wrap:wrap}
+  .navbar-nav .nav-link{padding:.4rem .6rem}
+  .container{padding-left:.6rem;padding-right:.6rem}
+}
+
+/* Table responsiveness improvements */
+table.dataTable td, table.dataTable th{white-space:nowrap}
+@media (max-width: 767.98px){
+  table.dataTable td, table.dataTable th{white-space:normal}
+}
+
+/* Small subtle hover on cards */
+.card-hover:hover{transform:translateY(-6px);transition:transform .18s ease;box-shadow:0 14px 40px rgba(16,24,40,.06)}
+
+/* Footer spacing on small screens */
+footer{padding:1.25rem 0}
+
+/* Helpful utilities */
+.text-truncate-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* Improve link touch targets */
+a{transition:color .12s ease}
+a:focus,a:hover{outline:none}

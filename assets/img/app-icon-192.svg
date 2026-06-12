@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="192" height="192" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
+  <rect width="192" height="192" rx="32" fill="#007bff"/>
+  <g transform="translate(24,24)" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="48">
+    <text x="0" y="56">OPH</text>
+  </g>
+</svg>
