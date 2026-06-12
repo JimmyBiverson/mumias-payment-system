@@ -19,7 +19,7 @@ if($query->num_rows > 0){
 	}
 </style>
 <div class="container py-5">
-    <div class="card card-ouline-primary">
+    <div class="card card-glass">
         <div class="card-header">
             <h5 class="card-title">Update Account Information/Credentials</h5>
         </div>

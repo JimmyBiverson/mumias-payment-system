@@ -12,14 +12,11 @@
       background-size:cover;
       background-repeat:no-repeat;
     }
-    .login-title{
-      text-shadow: 1px 1px black
-    }
   </style>
   <h1 class="text-center py-5 login-title"><b><?php echo $_settings->info('name') ?></b></h1>
 <div class="login-box">
   <!-- /.login-logo -->
-  <div class="card card-outline card-primary">
+  <div class="card card-outline card-primary glass-card">
     <div class="card-header text-center">
       <a href="./" class="h1"><b>Login</b></a>
     </div>

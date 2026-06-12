@@ -13,7 +13,7 @@
         display:none;
     }
 </style>
-<div class="container-fluid" id="print_out">
+<div class="container-fluid glass-card p-3" id="print_out">
     <div id='transaction-printable-details' class='position-relative'>
         <style>
             #transaction-printable-details:before {

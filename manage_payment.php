@@ -23,10 +23,10 @@
         padding: 15px;
     }
 </style>
-<div class="container-fluid">
+<div class="container-fluid fade-in">
     <form action="" id="transaction_form">
         <input type="hidden" name="csrf_token" value="<?php echo hash('sha256', session_id() . '::payment_form'); ?>">
-        <fieldset id="information">
+        <fieldset id="information" class="fade-in-up">
             <legend class="text-info">Payment Information</legend>
             <div class="form-group">
                 <label for="company_id" class="control-label text-info">Company</label>
@@ -67,7 +67,7 @@
                 <input type="hidden" name="gateway_id" value="">
             </div>
         </fieldset>
-        <fieldset id="pay-field" class="d-none">
+        <fieldset id="pay-field" class="d-none glass-card p-3 fade-in-up">
             <h1 class="text-center text-info" id="payable_amount">0.00</h1>
             <hr class="border-light">
             <div class="form-group">

@@ -1,4 +1,4 @@
-<div class="card card-outline card-primary">
+<div class="card card-outline card-primary card-glass">
 	<div class="card-header">
 		<h3 class="card-title">List of Charges/Fees</h3>
 		<div class="card-tools">
@@ -8,16 +8,7 @@
 	<div class="card-body">
 		<div class="container-fluid">
         <div class="container-fluid">
-			<table class="table table-hovered table-striped">
-				<colgroup>
-					<col width="5%">
-					<col width="12%">
-					<col width="16%">
-					<col width="16%">
-					<col width="16%">
-					<col width="15%">
-					<col width="10%">
-				</colgroup>
+			<table class="table table-hovered table-striped table-responsive-card">
 				<thead>
 					<tr>
 						<th>#</th>
@@ -32,29 +23,21 @@
 				<tbody>
 					<?php 
 					$i = 1;
-						// fee is stored as numeric (float). Use direct ordering by numeric columns.
 							$qry = $conn->query("SELECT * from `fee_list` order by `amount_from` asc, `amount_to` asc ");
 						while($row = $qry->fetch_assoc()):
 					?>
 						<tr>
-							<td class="text-center"><?php echo $i++; ?></td>
-							<td><?php echo date("Y-m-d H:i",strtotime($row['date_created'])) ?></td>
-							<td class="text-right"><?php echo number_format($row['amount_from'],2) ?></td>
-							<td class="text-right"><?php echo number_format($row['amount_to'],2) ?></td>
-							<td class="text-right"><?php echo number_format($row['fee'],2) ?></td>
-							<td class="text-center">
+							<td class="text-center" data-label="#"><?php echo $i++; ?></td>
+							<td data-label="Date"><?php echo date("Y-m-d H:i",strtotime($row['date_created'])) ?></td>
+							<td class="text-right" data-label="From"><?php echo number_format($row['amount_from'],2) ?></td>
+							<td class="text-right" data-label="To"><?php echo number_format($row['amount_to'],2) ?></td>
+							<td class="text-right" data-label="Charge"><?php echo number_format($row['fee'],2) ?></td>
+							<td class="text-center" data-label="Status">
 								<input type="checkbox" class="toggle_fee" data-id="<?php echo $row['id'] ?>" <?php echo isset($row['status']) && $row['status'] == 1 ? 'checked' : '' ?> />
 							</td>
-							<td align="center">
-								 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-				                  		Action
-				                    <span class="sr-only">Toggle Dropdown</span>
-				                  </button>
-				                  <div class="dropdown-menu" role="menu">
-				                    <a class="dropdown-item edit_data" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-edit text-primary"></span> Edit</a>
-				                    <div class="dropdown-divider"></div>
-				                    <a class="dropdown-item delete_data" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-trash text-danger"></span> Delete</a>
-				                  </div>
+							<td align="center" data-label="Action">
+                                <a class="btn btn-sm btn-glass edit_data mr-1" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>" title="Edit"><i class="fa fa-edit text-primary"></i></a>
+                                <a class="btn btn-sm btn-glass delete_data" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>" title="Delete"><i class="fa fa-trash text-danger"></i></a>
 							</td>
 						</tr>
 					<?php endwhile; ?>
@@ -100,7 +83,7 @@
 				})
 			})
 		$('.table td,.table th').addClass('py-1 px-2 align-middle')
-		$('.table').dataTable();
+		$('.table').DataTable({responsive: true});
 	})
 	function delete_category($id){
 		start_loader();

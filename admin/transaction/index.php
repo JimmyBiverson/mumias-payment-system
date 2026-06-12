@@ -1,22 +1,11 @@
-<div class="card card-outline card-primary">
+<div class="card card-outline card-primary card-glass">
 	<div class="card-header">
 		<h3 class="card-title">List of Transaction</h3>
 	</div>
 	<div class="card-body">
 		<div class="container-fluid">
-        <div class="container-fluid">
-			<table class="table table-bordered table-stripped">
-                    <colgroup>
-                        <col width="5%">
-                        <col width="10%">
-                        <col width="10%">
-                        <col width="12%">
-                        <col width="12%">
-                        <col width="20%">
-                        <col width="8%">
-                        <col width="8%">
-                        <col width="10%">
-                    </colgroup>
+        <div class="table-responsive">
+			<table class="table table-bordered table-stripped table-responsive-card">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -41,37 +30,31 @@
                         while($row = $qry->fetch_assoc()):
                         ?>
                             <tr>
-                                <td class="text-center"><?php echo $i++; ?></td>
-                                <td><?php echo date("Y-m-d H:i",strtotime($row['date_created'])) ?></td>
-                                <td><?php echo $row['tracking_code'] ?></td>
-                                <td><?php echo $row['user'] ?></td>
-                                <td><?php echo isset($row['gateway']) ? $row['gateway'] : 'N/A' ?></td>
-                                <td>
-                                    <dl class="lh-1">
-                                        <dt class="my-0 py-0 text-info">Account Name:</dt>
-                                        <dd class="my-0 py-0 pl-3"><?php echo $row['account_name'] ?></dd>
-                                        <dt class="my-0 py-0 text-info">Account #:</dt>
-                                        <dd class="my-0 py-0 pl-3"><?php echo $row['account_number'] ?></dd>
+                                <td class="text-center" data-label="#"><?php echo $i++; ?></td>
+                                <td data-label="Date"><?php echo date("Y-m-d H:i",strtotime($row['date_created'])) ?></td>
+                                <td data-label="Code"><?php echo $row['tracking_code'] ?></td>
+                                <td data-label="Client"><?php echo $row['user'] ?></td>
+                                <td data-label="Gateway"><?php echo isset($row['gateway']) ? $row['gateway'] : 'N/A' ?></td>
+                                <td data-label="Details">
+                                    <dl class="lh-1 mb-0">
+                                        <dt class="my-0 py-0 text-info" style="font-size:0.8rem">Account Name:</dt>
+                                        <dd class="my-0 py-0 pl-3 mb-0" style="font-size:0.85rem"><?php echo $row['account_name'] ?></dd>
+                                        <dt class="my-0 py-0 text-info" style="font-size:0.8rem">Account #:</dt>
+                                        <dd class="my-0 py-0 pl-3 mb-0" style="font-size:0.85rem"><?php echo $row['account_number'] ?></dd>
                                     </dl>
                                 </td>
-                                <td class="text-right"><?php echo number_format($row['payable_amount'],2) ?></td>
-                                <td class="text-center">
+                                <td class="text-right" data-label="Amount"><?php echo number_format($row['payable_amount'],2) ?></td>
+                                <td class="text-center" data-label="Status">
                                     <?php if(isset($row['status']) && $row['status'] == 'pending'): ?>
-                                        <span class="badge badge-warning">Pending</span>
+                                        <span class="badge badge-glass badge-warning"><i class="fa fa-clock"></i> Pending</span>
                                     <?php elseif(isset($row['status']) && $row['status'] == 'failed'): ?>
-                                        <span class="badge badge-danger">Failed</span>
+                                        <span class="badge badge-glass badge-danger"><i class="fa fa-times"></i> Failed</span>
                                     <?php else: ?>
-                                        <span class="badge badge-success">Completed</span>
+                                        <span class="badge badge-glass badge-success"><i class="fa fa-check"></i> Completed</span>
                                     <?php endif; ?>
                                 </td>
-                                <td align="center">
-                                    <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                            Action
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <div class="dropdown-menu" role="menu">
-                                        <a class="dropdown-item view_details" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>"><span class="fa fa-eye text-light"></span> View</a>
-                                    </div>
+                                <td align="center" data-label="Action">
+                                    <a class="btn btn-sm btn-glass view_details" href="javascript:void(0)" data-id="<?php echo $row['id'] ?>" title="View"><i class="fa fa-eye"></i></a>
                                 </td>
                             </tr>
                         <?php endwhile; ?>
@@ -90,7 +73,7 @@
 			uni_modal("Payment Details","transaction/view_payment.php?id="+$(this).attr('data-id'),'mid-large')
 		})
 		$('.table td,.table th').addClass('py-1 px-2 align-middle')
-		$('.table').dataTable();
+		$('.table').DataTable({responsive: true});
 	})
 	function delete_transaction($id){
 		start_loader();
@@ -115,3 +98,4 @@
 		})
 	}
 </script>
+

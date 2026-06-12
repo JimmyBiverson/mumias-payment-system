@@ -165,21 +165,21 @@
         </div>
         <div class="row g-3">
             <div class="col-12 col-sm-6 col-md-4">
-                <div class="feature-card text-center">
+                <div class="feature-card text-center glass-card fade-in-up stagger-1">
                     <div class="mb-3"><i class="fa fa-lock fa-3x"></i></div>
                     <h5>Secure Payments</h5>
                     <p class="small text-muted">Encrypted transactions and robust fraud detection to keep payments safe.</p>
                 </div>
             </div>
             <div class="col-12 col-sm-6 col-md-4">
-                <div class="feature-card text-center">
+                <div class="feature-card text-center glass-card fade-in-up stagger-1">
                     <div class="mb-3"><i class="fa fa-bolt fa-3x"></i></div>
                     <h5>Fast Settlements</h5>
                     <p class="small text-muted">Quick processing and clear reporting so you always know your status.</p>
                 </div>
             </div>
             <div class="col-12 col-sm-6 col-md-4">
-                <div class="feature-card text-center">
+                <div class="feature-card text-center glass-card fade-in-up stagger-1">
                     <div class="mb-3"><i class="fa fa-cogs fa-3x"></i></div>
                     <h5>Easy Integration</h5>
                     <p class="small text-muted">Simple setup and multiple gateway options to suit your needs.</p>

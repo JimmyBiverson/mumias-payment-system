@@ -9,28 +9,25 @@ $date_to = isset($_GET['date_to']) ? $_GET['date_to'] : date("Y-m-d");;
 		display:none;
 	}
 </style>
-<div class="card card-outline card-primary">
+<div class="card card-outline card-primary card-glass">
 	<div class="card-header">
 		<h3 class="card-title">Transaction Reports</h3>
-		<div class="card-tools">
-			<!-- <button href="?page=history/manage_record" class="btn btn-flat btn-primary"><span class="fas fa-print"></span>  Create New</button> -->
-		</div>
 	</div>
 	<div class="card-body">
 		<div class="container-fluid">
 			<div class="col-12">
 				<form action="" id="filter">
 				<div class="row align-items-end">
-					<div class="form-group col-md-4">
+					<div class="form-group col-md-4 col-sm-6">
 						<label for="date_from" class="control-label">Date From</label>
 						<input type="date" name="date_from" class="form-control" value="<?php echo $date_from ?>" required>
 					</div>
-					<div class="form-group col-md-4">
+					<div class="form-group col-md-4 col-sm-6">
 						<label for="date_to" class="control-label">Date To</label>
 						<input type="date" name="date_to" class="form-control" value="<?php echo $date_to ?>" required>
 					</div>
-					<div class="form-group col-md-4">
-						<button class="btn btn-flat btn-primary">Filter</button>
+					<div class="form-group col-md-4 col-sm-12">
+						<button class="btn btn-flat btn-primary mr-1">Filter</button>
 						<button class="btn btn-flat btn-success" type="button" id="print"><i class="fa fa-print"></i> Print</button>
 					</div>
 				</div>
@@ -45,15 +42,7 @@ $date_to = isset($_GET['date_to']) ? $_GET['date_to'] : date("Y-m-d");;
 						<h3 class="text-center">As of <?php echo date("F d, Y",strtotime($date_from)) ?> - <?php echo date("F d, Y",strtotime($date_to)) ?></h3>
 					<?php endif; ?>
 				</div>
-			<table class="table table-bordered table-striped">
-				<colgroup>
-					<col width="5%">
-					<col width="15%">
-					<col width="20%">
-					<col width="20%">
-					<col width="25%">
-					<col width="15%">
-				</colgroup>
+			<table class="table table-bordered table-striped table-responsive-card">
 				<thead>
 					<tr>
 						<th>#</th>
@@ -74,19 +63,19 @@ $date_to = isset($_GET['date_to']) ? $_GET['date_to'] : date("Y-m-d");;
 					while($row = $qry->fetch_assoc()):
 					?>
 						<tr>
-							<td class="text-center align-middle py-1 px-2"><?php echo $i++; ?></td>
-							<td class="align-middle py-1 px-2"><?php echo date("Y-m-d H:i",strtotime($row['date_created'])) ?></td>
-							<td class="align-middle py-1 px-2"><?php echo $row['tracking_code'] ?></td>
-							<td class="align-middle py-1 px-2"><?php echo $row['user'] ?></td>
-							<td class="align-middle py-1 px-2">
-								<dl class="lh-1">
-									<dt class="my-0 py-0 text-info">Account Name:</dt>
-									<dd class="my-0 py-0 pl-3"><?php echo $row['account_name'] ?></dd>
-									<dt class="my-0 py-0 text-info">Account #:</dt>
-									<dd class="my-0 py-0 pl-3"><?php echo $row['account_number'] ?></dd>
+							<td class="text-center align-middle py-1 px-2" data-label="#"><?php echo $i++; ?></td>
+							<td class="align-middle py-1 px-2" data-label="Date"><?php echo date("Y-m-d H:i",strtotime($row['date_created'])) ?></td>
+							<td class="align-middle py-1 px-2" data-label="Code"><?php echo $row['tracking_code'] ?></td>
+							<td class="align-middle py-1 px-2" data-label="Client"><?php echo $row['user'] ?></td>
+							<td class="align-middle py-1 px-2" data-label="Details">
+								<dl class="lh-1 mb-0">
+									<dt class="my-0 py-0 text-info" style="font-size:0.8rem">Account Name:</dt>
+									<dd class="my-0 py-0 pl-3 mb-0" style="font-size:0.85rem"><?php echo $row['account_name'] ?></dd>
+									<dt class="my-0 py-0 text-info" style="font-size:0.8rem">Account #:</dt>
+									<dd class="my-0 py-0 pl-3 mb-0" style="font-size:0.85rem"><?php echo $row['account_number'] ?></dd>
 								</dl>
 							</td>
-							<td class="text-right align-middle py-1 px-2"><?php echo number_format($row['payable_amount'],2) ?></td>
+							<td class="text-right align-middle py-1 px-2" data-label="Amount"><?php echo number_format($row['payable_amount'],2) ?></td>
 						</tr>
 					<?php endwhile; ?>
 				</tbody>
